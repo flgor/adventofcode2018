@@ -6,10 +6,19 @@ test('adventDay1', () => {
 	let inputPath = path.join(__dirname, 'input.txt');
 	let inputData = fs.readFileSync(inputPath);
 	let inputArray = JSON.parse(inputData);
-	
-	let result = inputArray.reduce((acc = 0, c) => {
-		return acc + c;
-	});
+
+	let fqvSet = new Set([0]);
+	let result = inputArray.reduce((acc, c) => {
+		acc = acc + c;
+
+		if (fqvSet.has(acc)) {
+			console.log(acc);
+		}
+		fqvSet.add(acc);
+
+		return acc;
+
+	}, 0);
 	
 	console.log(result);
 	
